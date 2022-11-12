@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "@fontsource/lexend-deca";
 import { ThemeProvider } from "styled-components";
 import App from "./components/App/App";
 import mainTheme from "./mainTheme";
