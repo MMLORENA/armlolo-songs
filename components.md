@@ -3,11 +3,12 @@
 ### DATA:
 
 - An Array of the list of songs.
-- Object song with title, artist and metadata.
-- The songActive.
+- Object song with title, artist and other metadata info.
+- The song info that it's actually playing.
 
 ### Modifications:
 
+- Load the list of songs.
 - Add a Song at the array of songs.
 - Remove a Song fromt the array of songs.
 - Set the Playing Song.
