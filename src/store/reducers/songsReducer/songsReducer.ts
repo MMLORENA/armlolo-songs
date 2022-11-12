@@ -2,13 +2,13 @@ import {
   LoadSongsAction,
   SongAction,
 } from "../../actions/actionsSongs/types/actionsSongs";
-import { SongsContextStructure } from "../../contexts/types";
+import { SongsStructure } from "../../contexts/types";
 
 const songsReducer = (
-  previewSongsState: SongsContextStructure,
+  previewSongsState: SongsStructure,
   action: SongAction
 ) => {
-  let newSongsState: SongsContextStructure;
+  let newSongsState: SongsStructure;
 
   if (action.type === "loadSongs") {
     newSongsState = {
