@@ -1,10 +1,13 @@
+import GlobalStyle from "../../GlobalStyle";
+import Header from "../Header/Header";
 import AppStyled from "./AppStyled";
 
 const App = (): JSX.Element => {
   return (
     <>
+      <GlobalStyle />
       <AppStyled>
-        <span>Hola Musicoadictos</span>
+        <Header />
       </AppStyled>
     </>
   );
