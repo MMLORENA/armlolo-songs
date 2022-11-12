@@ -1,11 +1,11 @@
 import { Song } from "../../../contexts/types";
 import { ActionTypesSong } from "./actionsTypesSong";
 
-export interface songAction {
+export interface SongAction {
   type: ActionTypesSong;
   payload?: unknown;
 }
 
-export interface loadSongsAction extends songAction {
+export interface LoadSongsAction extends SongAction {
   payload: Song[];
 }

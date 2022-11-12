@@ -1,7 +1,7 @@
 import { Song } from "../../contexts/types";
-import { loadSongsAction } from "./types/actionsSongs";
+import { LoadSongsAction } from "./types/actionsSongs";
 
-export const loadSongsActionCreator = (songsList: Song[]): loadSongsAction => ({
+export const loadSongsActionCreator = (songsList: Song[]): LoadSongsAction => ({
   type: "loadSongs",
   payload: songsList,
 });
