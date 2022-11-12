@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "@fontsource/lexend-deca";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -7,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
 html {
-    font-family: "Poppins", sans-serif;
+    font-family: "Lexend Deca", sans-serif;;
   }
 
 ul {
