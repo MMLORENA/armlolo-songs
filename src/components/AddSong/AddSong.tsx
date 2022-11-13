@@ -6,22 +6,25 @@ const AddSong = (): JSX.Element => {
   const [audioName, setAudioName] = useState(noAudioSelected);
 
   const changeAudioName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let fileName = event.target.files![0].name;
+    const fileName = event.target.files![0].name;
     setAudioName(fileName);
   };
+
   return (
     <AddSongStyled className="add-audio">
       <label className="add-audio__input-label">
         Click here to provide a song
         <input
           className="add-audio__input"
-          onChange={(event) => changeAudioName(event)}
+          onChange={changeAudioName}
           type="file"
           accept=".mp3"
         />
       </label>
       <span className="add-audio__selected-file">{audioName}</span>
-      <input className="add-audio__submit" type="submit" value="Send song" />
+      <button className="add-audio__submit" type="submit">
+        Send Song
+      </button>
     </AddSongStyled>
   );
 };
