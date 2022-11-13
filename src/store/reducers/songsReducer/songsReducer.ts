@@ -1,4 +1,5 @@
 import {
+  AddSongAction,
   LoadSongsAction,
   SongAction,
 } from "../../actions/actionsSongs/types/actionsSongs";
@@ -7,16 +8,26 @@ import { SongsStructure } from "../../contexts/types";
 const songsReducer = (
   previewSongsState: SongsStructure,
   action: SongAction
-) => {
+): SongsStructure => {
   let newSongsState: SongsStructure;
 
-  if (action.type === "loadSongs") {
-    newSongsState = {
-      ...previewSongsState,
-      songs: (action as LoadSongsAction).payload,
-    };
-  } else {
-    newSongsState = { ...previewSongsState };
+  switch (action.type) {
+    case "loadSongs":
+      newSongsState = {
+        ...previewSongsState,
+        songs: (action as LoadSongsAction).payload,
+      };
+      break;
+
+    case "addSong":
+      newSongsState = {
+        ...previewSongsState,
+        songs: [...previewSongsState.songs, (action as AddSongAction).payload],
+      };
+      break;
+
+    default:
+      newSongsState = { ...previewSongsState };
   }
 
   return newSongsState;
