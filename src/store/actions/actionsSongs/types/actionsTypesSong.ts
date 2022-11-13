@@ -1,1 +1,1 @@
-export type ActionTypesSong = "loadSongs" | "unknown";
+export type ActionTypesSong = "loadSongs" | "addSong" | "unknown";
