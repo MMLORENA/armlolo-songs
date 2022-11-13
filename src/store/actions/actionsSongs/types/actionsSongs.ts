@@ -9,3 +9,7 @@ export interface SongAction {
 export interface LoadSongsAction extends SongAction {
   payload: Song[];
 }
+
+export interface addSongAction extends SongAction {
+  payload: Song;
+}
