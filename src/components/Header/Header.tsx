@@ -4,8 +4,8 @@ const Header = (): JSX.Element => {
   return (
     <HeaderStyled>
       <h1>
-        <span className="main-title">Music </span>
-        <span className="main-title">Addicts</span>
+        <span className="main-title">Armlolo </span>
+        <span className="main-title">Songs</span>
       </h1>
     </HeaderStyled>
   );
