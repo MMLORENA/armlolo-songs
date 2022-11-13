@@ -46,7 +46,7 @@
 
 Of the received song:
 
-- Its title in a level 2 heading.
+- Its title in a level 3 heading.
 - Its image and alternative text.
 - Its artist.
 - Its metaData.
