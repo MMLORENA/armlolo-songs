@@ -16,7 +16,7 @@ const AddSong = (): JSX.Element => {
         Click here to provide a song
         <input
           className="add-audio__input"
-          onChange={(event) => changeAudioName(event)}
+          onChange={changeAudioName}
           type="file"
           accept=".mp3"
         />
