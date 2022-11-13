@@ -6,8 +6,8 @@ import SongCard from "./SongCard";
 describe("Given a SongCard Component", () => {
   const mockSongTest: Song = mockSong;
 
-  describe("When it's render with a song 'Bad Jokes'", () => {
-    test("Then it should show a 'Bad Jokes' heading level 3 inside", () => {
+  describe("When it's render with a song", () => {
+    test("Then it should show a it title received in a heading level 3 inside", () => {
       render(<SongCard songPosition={0} song={mockSongTest} />);
 
       const resultTitle = screen.getByRole("heading", {
@@ -19,8 +19,8 @@ describe("Given a SongCard Component", () => {
     });
   });
 
-  describe("When it's render with a song with an alt text 'Bad Jokes'", () => {
-    test("Then it should show a picture with an alt text 'Bad Jokes'", () => {
+  describe("When it's render with a song with an alt image", () => {
+    test("Then it should show a picture with the alt received", () => {
       render(<SongCard songPosition={0} song={mockSongTest} />);
 
       const altSong = screen.getByRole("img", {
