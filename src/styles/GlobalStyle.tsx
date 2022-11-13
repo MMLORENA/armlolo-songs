@@ -3,12 +3,15 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 * {
     box-sizing: border-box;
-    margin: 0; 
   }
 
 html {
     font-family: "Lexend Deca", sans-serif;
   }
+
+body {
+  margin: 0 auto;
+}
 
 ul,li {
     list-style: none;
@@ -18,9 +21,6 @@ ul,li {
     padding-inline-start: 0;
   }
 
-span {
-  margin: 0;
-}
 
 button, a {
   @media (min-width: 768px) {
@@ -36,6 +36,7 @@ select {
 }
 
 p,
+span,
 h1,
 h2,
 h3,

@@ -9,13 +9,22 @@ const AddSongStyled = styled.form`
   border-radius: 5px;
   border: 2px solid ${(props) => props.theme.secondaryColor};
   padding: 0.5rem;
+  width: 100%;
+
   .add-audio {
+    &__input-label {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
     &__input {
       display: none;
     }
+
     &__submit {
       ${button}
     }
+
     &__selected-file {
       display: inline-block;
       height: 1rem;
