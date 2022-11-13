@@ -5,7 +5,7 @@ import { wrappedRender } from "../../testUtils/wrappedRender";
 describe("Given the Header Component", () => {
   describe("When it's render", () => {
     test("Then should show a 'Music Addicts' in a heading level 1", () => {
-      const expectedTitle = "Music Addicts";
+      const expectedTitle = "Armlolo Songs";
 
       wrappedRender(<Header />);
 
