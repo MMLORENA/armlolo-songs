@@ -4,14 +4,20 @@ import "@fontsource/lexend-deca";
 import { ThemeProvider } from "styled-components";
 import App from "./components/App/App";
 import mainTheme from "./mainTheme";
+import SongsContextProvider from "./store/contexts/SongsContext/SongsContextProvider";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={mainTheme}>
-      <App />
-    </ThemeProvider>
+    <SongsContextProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={mainTheme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </SongsContextProvider>
   </React.StrictMode>
 );
