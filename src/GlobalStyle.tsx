@@ -3,20 +3,24 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 * {
     box-sizing: border-box;
-    margin: 0 auto; 
+    margin: 0; 
   }
 
 html {
     font-family: "Lexend Deca", sans-serif;
   }
 
-ul {
+ul,li {
     list-style: none;
     list-style-position: outside;
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0;
   }
+
+span {
+  margin: 0;
+}
 
 button, a {
   @media (min-width: 768px) {
