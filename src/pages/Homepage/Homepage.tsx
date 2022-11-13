@@ -1,4 +1,5 @@
 import AddSong from "../../components/AddSong/AddSong";
+import SongsList from "../../components/SongsList/SongsList";
 import HomepageStyled from "./HomepageStyled";
 
 const Homepage = (): JSX.Element => {
@@ -6,6 +7,7 @@ const Homepage = (): JSX.Element => {
     <HomepageStyled className="homepage-container">
       <h2 className="homepage-title">Homepage</h2>
       <AddSong />
+      <SongsList />
     </HomepageStyled>
   );
 };

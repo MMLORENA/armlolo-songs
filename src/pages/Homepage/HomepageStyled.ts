@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HomepageStyled = styled.main`
+const HomepageStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
