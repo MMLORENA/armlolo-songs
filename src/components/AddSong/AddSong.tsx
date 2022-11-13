@@ -22,7 +22,9 @@ const AddSong = (): JSX.Element => {
         />
       </label>
       <span className="add-audio__selected-file">{audioName}</span>
-      <button className="add-audio__submit" type="submit" value="Send song" />
+      <button className="add-audio__submit" type="submit">
+        Send Song
+      </button>
     </AddSongStyled>
   );
 };
