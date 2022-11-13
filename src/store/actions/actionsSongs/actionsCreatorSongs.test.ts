@@ -1,4 +1,7 @@
-import { mockSong } from "../../../mocks/mockSongsData/mockSongsData";
+import {
+  mockListSong,
+  mockSong,
+} from "../../../mocks/mockSongsData/mockSongsData";
 import {
   addSongActionCreator,
   loadSongsActionCreator,
@@ -10,10 +13,10 @@ describe("Given the loadSongsActionCreator function", () => {
     test("Then it should return an action with type 'loadSongs' and payload with list of songs received", () => {
       const expectedTypeAction: ActionTypesSong = "loadSongs";
 
-      const loadSongsAction = loadSongsActionCreator([mockSong]);
+      const loadSongsAction = loadSongsActionCreator(mockListSong);
 
       expect(loadSongsAction).toHaveProperty("type", expectedTypeAction);
-      expect(loadSongsAction).toHaveProperty("payload", [mockSong]);
+      expect(loadSongsAction).toHaveProperty("payload", mockListSong);
     });
   });
 });
