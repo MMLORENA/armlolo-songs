@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import mainTheme from "../mainTheme";
+import mainTheme from "../styles/mainTheme";
 
 interface WrapperProps {
   children: JSX.Element | JSX.Element[];
