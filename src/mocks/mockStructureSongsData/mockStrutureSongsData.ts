@@ -1,7 +1,7 @@
 import { SongsStructure } from "../../store/contexts/types";
-import { mockSong } from "../mockSongsData/mockSongsData";
+import { mockListSong, mockSong } from "../mockSongsData/mockSongsData";
 
 export const mockStructureSongsData: SongsStructure = {
   songActive: mockSong,
-  songs: [mockSong],
+  songs: mockListSong,
 };

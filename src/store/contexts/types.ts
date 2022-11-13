@@ -10,6 +10,10 @@ export interface SongsContextStructure extends SongsStructure {
 
 export interface Song {
   title: string;
+  album: string;
   artist: string;
   picture: string;
+  id: string;
+  time: string;
+  audio: string;
 }
