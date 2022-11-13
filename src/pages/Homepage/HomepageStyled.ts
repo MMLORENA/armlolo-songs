@@ -5,8 +5,6 @@ const HomepageStyled = styled.main`
   flex-direction: column;
   gap: 1rem;
   width: 100%;
-  max-width: 31.25rem;
-  align-self: center;
 
   .homepage-title {
     text-align: center;

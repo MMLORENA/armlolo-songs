@@ -10,6 +10,8 @@ const AddSongStyled = styled.form`
   border: 2px solid ${(props) => props.theme.secondaryColor};
   padding: 0.5rem;
   width: 100%;
+  max-width: 31.25rem;
+  align-self: center;
 
   .add-audio {
     &__input-label {
