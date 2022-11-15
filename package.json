@@ -86,9 +86,8 @@
       "!src/react-app-env.d.ts",
       "!src/components/App/App.tsx",
       "!src/components/App/AppStyled.tsx",
-      "!src/store/contexts/SongsContext/SongsContext.ts",
-      "!src/store/contexts/SongsContext/SongsContextProvider.tsx",
-      "!src/GlobalStyle.tsx"
+      "!src/styles/GlobalStyle.tsx",
+      "!src/**/*.stories.tsx"
     ]
   }
 }
