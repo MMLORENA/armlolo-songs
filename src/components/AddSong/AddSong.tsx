@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../Button/Button";
 import AddSongStyled from "./AddSongStyled";
 
 const AddSong = (): JSX.Element => {
@@ -22,9 +23,7 @@ const AddSong = (): JSX.Element => {
         />
       </label>
       <span className="add-audio__selected-file">{audioName}</span>
-      <button className="add-audio__submit" type="submit">
-        Send Song
-      </button>
+      <Button text={"Send Song"} type="submit" />
     </AddSongStyled>
   );
 };
