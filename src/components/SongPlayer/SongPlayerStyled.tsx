@@ -7,11 +7,11 @@ const SongPlayerStyled = styled.article`
   display: flex;
   width: 100vw;
   height: 100px;
-  border: 2px solid ${(props) => props.theme.secondaryColor};
-  background-color: ${(props) => props.theme.mainLight};
+  border: 2px solid ${({ theme: { colors } }) => colors.secondaryColor};
+  background-color: ${({ theme: { colors } }) => colors.mainLight};
   border-radius: 5px;
   overflow: hidden;
-  color: ${(props) => props.theme.mainDark};
+  color: ${({ theme: { colors } }) => colors.mainDark};
   @media (min-width: 900px) {
     flex-direction: row;
   }
@@ -42,11 +42,11 @@ const SongPlayerStyled = styled.article`
       width: 100%;
       &::-webkit-media-controls-panel {
         width: 100%;
-        background-color: ${(props) => props.theme.mainLight};
+        background-color: ${({ theme: { colors } }) => colors.mainLight};
       }
       &::-webkit-media-controls-current-time-display,
       &::-webkit-media-controls-time-remaining-display {
-        color: ${(props) => props.theme.mainDark};
+        color: ${({ theme: { colors } }) => colors.mainDark};
         box-shadow: none;
       }
     }
