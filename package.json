@@ -30,12 +30,24 @@
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -51,9 +63,22 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/builder-webpack5": "^6.5.13",
+    "@storybook/manager-webpack5": "^6.5.13",
+    "@storybook/node-logger": "^6.5.13",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",
-    "husky": "^8.0.0"
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "husky": "^8.0.0",
+    "prop-types": "^15.8.1",
+    "webpack": "^5.75.0"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -63,7 +88,8 @@
       "!src/react-app-env.d.ts",
       "!src/components/App/App.tsx",
       "!src/components/App/AppStyled.tsx",
-      "!src/styles/GlobalStyle.tsx"
+      "!src/styles/GlobalStyle.tsx",
+      "!src/**/*.stories.tsx"
     ]
   }
 }
