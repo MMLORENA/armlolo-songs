@@ -5,8 +5,8 @@ const AppStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0.5rem;
-  background-color: ${(props) => props.theme.mainDark};
-  color: ${(props) => props.theme.mainLight};
+  background-color: ${({ theme: { colors } }) => colors.mainDark};
+  color: ${({ theme: { colors } }) => colors.mainLight};
   min-height: 100vh;
   width: 100%;
   flex-direction: column;

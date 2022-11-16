@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import button from "../../styles/button";
 
 const AddSongStyled = styled.form`
   display: flex;
@@ -7,7 +6,7 @@ const AddSongStyled = styled.form`
   align-items: center;
   gap: 0.6rem;
   border-radius: 5px;
-  border: 2px solid ${(props) => props.theme.secondaryColor};
+  border: 2px solid ${({ theme: { colors } }) => colors.secondaryColor};
   padding: 0.5rem;
   width: 100%;
   max-width: 31.25rem;
@@ -21,10 +20,6 @@ const AddSongStyled = styled.form`
 
     &__input {
       display: none;
-    }
-
-    &__submit {
-      ${button}
     }
 
     &__selected-file {
