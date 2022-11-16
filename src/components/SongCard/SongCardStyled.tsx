@@ -28,10 +28,10 @@ const SongCardStyled = styled.li`
 
     &__title {
       font-size: 1rem;
-      color: ${(props) => props.theme.primaryColor};
+      color: ${({ theme: { colors } }) => colors.primaryColor};
 
       &--active {
-        color: ${(props) => props.theme.secondaryColor};
+        color: ${({ theme: { colors } }) => colors.secondaryColor};
       }
     }
 

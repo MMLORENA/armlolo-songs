@@ -5,11 +5,11 @@ const HeaderStyled = styled.header`
 
   .main-title {
     :first-child {
-      color: ${(props) => props.theme.primaryColor};
+      color: ${({ theme: { colors } }) => colors.primaryColor};
     }
 
     :nth-child(2) {
-      color: ${(props) => props.theme.secondaryColor};
+      color: ${({ theme: { colors } }) => colors.secondaryColor};
     }
   }
 `;
