@@ -23,7 +23,6 @@ describe("Given the Button component", () => {
       const mockAction = jest.fn();
 
       wrappedRender(<Button text="Test" action={mockAction} type="button" />);
-
       const button = screen.getByRole("button", { name: "Test" });
       await userEvent.click(button);
 
