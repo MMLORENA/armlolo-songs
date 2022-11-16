@@ -1,24 +1,37 @@
-import { Song } from "../../store/contexts/types";
+import { SongToPlay } from "../../store/contexts/types";
+import SongPlayerStyled from "./SongPlayerStyled";
 
 const SongPlayer = ({
   title,
   artist,
   picture,
-  time,
   album,
   audio,
-}: Song): JSX.Element => {
+}: SongToPlay): JSX.Element => {
   return (
-    <article>
-      <img src={picture} alt={`Album ${album}`} height={70} width={70} />
-      <div className="song-data-container">
-        <h3 className="song__title">{title}</h3>
-        <span className="song__artist">{artist}</span>
-        <span className="song__album">{album}</span>
-        <span className="song__duration">{time}</span>
+    <SongPlayerStyled>
+      <img
+        className="song-data__image"
+        src={picture}
+        alt={`Album ${album}`}
+        height={100}
+        width={100}
+      />
+      <div className="song-data__main">
+        <div className="song-data__container">
+          <span className="song-data__title">{title}</span>
+          <span className="song-data__artist">{artist}</span>
+          <span className="song-data__album">{album}</span>
+        </div>
+        <audio
+          controls
+          autoPlay
+          aria-label="Song Player"
+          src={audio}
+          className="song-data__audio"
+        ></audio>
       </div>
-      <audio src={audio} controls></audio>
-    </article>
+    </SongPlayerStyled>
   );
 };
 
