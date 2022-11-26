@@ -1,19 +1,13 @@
-import { render, RenderResult } from "@testing-library/react";
-import { SongsStructure } from "../../store/contexts/types";
+import { render } from "@testing-library/react";
+import { WrapperProps } from "./types/types";
 import Wrapper from "./Wrapper";
 
-interface WrapperRenderProps {
-  view: JSX.Element | JSX.Element[];
-  renderOptions: {
-    currentState?: SongsStructure;
-    dispatch?: jest.Mock<any, any>;
-  };
-}
-
 const WrapperRender = ({
-  view,
+  children,
   renderOptions: { currentState, dispatch },
-}: WrapperRenderProps): RenderResult =>
-  render(<Wrapper wrapperOptions={{ currentState, dispatch }}>{view}</Wrapper>);
+}: WrapperProps) =>
+  render(
+    <Wrapper renderOptions={{ currentState, dispatch }}>{children}</Wrapper>
+  );
 
 export default WrapperRender;

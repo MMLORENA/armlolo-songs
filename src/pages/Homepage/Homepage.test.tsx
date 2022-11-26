@@ -7,7 +7,7 @@ describe("Given the Homepage page", () => {
     test("Then it should show 'Homepage' in a heading level 2", () => {
       const title = "Homepage";
 
-      WrapperRender({ view: <Homepage />, renderOptions: {} });
+      WrapperRender({ children: <Homepage />, renderOptions: {} });
 
       const homepageTitle = screen.getByRole("heading", {
         name: title,

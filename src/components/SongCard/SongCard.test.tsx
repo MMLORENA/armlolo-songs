@@ -1,13 +1,14 @@
 import { screen } from "@testing-library/react";
-import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import { Song } from "../../store/contexts/types";
-import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import SongCard from "./SongCard";
+import { WrapperProps } from "../../testUtils/wrappers/types/types";
+import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
+import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 
 describe("Given a SongCard Component", () => {
   const mockSongTest: Song = mockSong;
-  const componentWithOptions = {
-    view: <SongCard songPosition={0} song={mockSongTest} />,
+  const componentWithOptions: WrapperProps = {
+    children: <SongCard songPosition={0} song={mockSongTest} />,
     renderOptions: {},
   };
 
