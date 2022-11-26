@@ -57,7 +57,7 @@ describe("Given the useSong custom hook function", () => {
 
         const expectedPayload = {
           type: "addActiveSong",
-          payload: { ...mockSong, id: `${Date.now()}` },
+          payload: mockSong,
         };
 
         const { result } = WrapperRenderHook({
