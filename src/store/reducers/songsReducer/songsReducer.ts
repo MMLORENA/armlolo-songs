@@ -1,5 +1,6 @@
 import {
   AddSongAction,
+  DeleteSongAction,
   LoadSongsAction,
   SongAction,
 } from "../../actions/actionsSongs/types/actionsSongs";
@@ -25,10 +26,20 @@ const songsReducer = (
         songs: [...previewSongsState.songs, (action as AddSongAction).payload],
       };
       break;
+
     case "addActiveSong":
       newSongsState = {
         ...previewSongsState,
         songActive: (action as AddSongAction).payload,
+      };
+      break;
+
+    case "deleteSong":
+      newSongsState = {
+        ...previewSongsState,
+        songs: previewSongsState.songs.filter(
+          ({ id }) => id !== (action as DeleteSongAction).payload
+        ),
       };
       break;
 

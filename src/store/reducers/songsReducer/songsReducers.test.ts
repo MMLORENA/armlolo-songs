@@ -6,6 +6,7 @@ import { mockStructureSongsData } from "../../../testUtils/mocks/mockStructureSo
 import {
   addActiveSongActionCreator,
   addSongActionCreator,
+  deleteSongActionCreator,
   loadSongsActionCreator,
 } from "../../actions/actionsSongs/actionsCreatorSongs";
 import { SongAction } from "../../actions/actionsSongs/types/actionsSongs";
@@ -64,6 +65,22 @@ describe("Given the songsReducers function", () => {
       const expectedNewState = { ...mockStructureSongsData };
 
       const newState = songsReducer(mockStructureSongsData, unknownAction);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+
+  describe("When it's called with a previous state and an action type 'deleteSong' and id '1'", () => {
+    test("Then it should return a new state with the list of songs without song with id received", () => {
+      const mockIdSong: string = mockStructureSongsData.songs[0].id;
+
+      const deleteAction: SongAction = deleteSongActionCreator(mockIdSong);
+      const expectedNewState: SongsStructure = {
+        ...mockStructureSongsData,
+        songs: [mockStructureSongsData.songs[1]],
+      };
+
+      const newState = songsReducer(mockStructureSongsData, deleteAction);
 
       expect(newState).toStrictEqual(expectedNewState);
     });

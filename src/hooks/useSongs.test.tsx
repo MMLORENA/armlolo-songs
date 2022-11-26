@@ -5,6 +5,7 @@ import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
 import { mockStructureSongsData } from "../testUtils/mocks/mockStructureSongsData/mockStrutureSongsData";
 import WrapperRenderHook from "../testUtils/wrappers/WrapperRenderHook";
 import useSong from "./useSong";
+import { toast } from "react-toastify";
 
 jest.mock("music-metadata-browser", () => ({
   ...jest.requireActual("music-metadata-browser"),
@@ -18,6 +19,9 @@ describe("Given the useSong custom hook function", () => {
   describe("When addSong it's called with a music file", () => {
     test("Then dispatch has to been called with the music info", async () => {
       jest.useFakeTimers();
+
+      const mockToastify = jest.fn();
+      toast.success = mockToastify;
 
       const fileReaderSpy = jest.spyOn(global, "FileReader").mockImplementation(
         (): FileReader => ({
@@ -52,6 +56,7 @@ describe("Given the useSong custom hook function", () => {
       reader.onloadend!({} as ProgressEvent<FileReader>);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
+      expect(mockToastify).toHaveBeenCalled();
     });
   });
 
@@ -114,6 +119,24 @@ describe("Given the useSong custom hook function", () => {
 
         expect(mockDispatch).toHaveBeenCalledWith(expectedSongActiveAction);
       });
+    });
+  });
+
+  describe("When addActiveSong it's called without a song", () => {
+    test("Then notify error should haven been called", async () => {
+      const mockErrorToastify = jest.fn();
+      toast.error = mockErrorToastify;
+
+      jest.useFakeTimers();
+
+      const { result } = WrapperRenderHook({
+        customHook: useSong,
+        renderOptions: { dispatch: mockDispatch },
+      });
+
+      await result.current.addSong(new File([], ""));
+
+      expect(mockErrorToastify).toHaveBeenCalled();
     });
   });
 });
