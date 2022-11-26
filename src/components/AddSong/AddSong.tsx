@@ -17,6 +17,7 @@ const AddSong = (): JSX.Element => {
   const handleOnsubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     addSong(audioInfo.songFile);
+    setAudioInfo(noAudioSelected);
   };
 
   return (

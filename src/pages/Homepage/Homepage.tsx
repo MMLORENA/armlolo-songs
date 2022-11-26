@@ -6,24 +6,13 @@ import SongsContext from "../../store/contexts/SongsContext/SongsContext";
 import HomepageStyled from "./HomepageStyled";
 
 const Homepage = (): JSX.Element => {
-  const {
-    songActive: { title, artist, album, audio, picture },
-  } = useContext(SongsContext);
+  const { songActive } = useContext(SongsContext);
+
   return (
     <HomepageStyled className="homepage-container">
       <h2 className="homepage-title">Homepage</h2>
       <AddSong />
-      {title ? (
-        <SongPlayer
-          title={title}
-          artist={artist}
-          album={album}
-          audio={audio}
-          picture={picture}
-        />
-      ) : (
-        <></>
-      )}
+      {songActive.title ? <SongPlayer song={songActive} /> : <></>}
       <SongsList />
     </HomepageStyled>
   );

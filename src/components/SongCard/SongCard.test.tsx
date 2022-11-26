@@ -42,10 +42,7 @@ describe("Given a SongCard Component", () => {
 
         await userEvent.click(altSong);
 
-        expect(mockAddActiveSong).toHaveBeenCalledWith({
-          ...mockSongTest,
-          id: `${Date.now()}`,
-        });
+        expect(mockAddActiveSong).toHaveBeenCalledWith(mockSongTest);
       });
     });
   });

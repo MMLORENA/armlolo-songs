@@ -15,6 +15,7 @@ window.process = process;
 
 const useSong = () => {
   const { dispatch } = useContext(SongsContext);
+  const { songs } = useContext(SongsContext);
 
   const addSong = async (songFile: File) => {
     try {
@@ -54,28 +55,20 @@ const useSong = () => {
     }
   };
 
-  const addActiveSong = async ({
-    title,
-    album,
-    artist,
-    time,
-    audio,
-    picture,
-  }: Song) => {
-    dispatch(
-      addActiveSongActionCreator({
-        id: `${Date.now()}`,
-        title: title,
-        album: album,
-        artist: artist,
-        time: time,
-        audio: audio,
-        picture: picture,
-      })
-    );
+  const addActiveSong = (song: Song) => {
+    dispatch(addActiveSongActionCreator(song));
   };
 
-  return { addSong, addActiveSong };
+  const nextSong = (id: string) => {
+    const songPosition = songs.findIndex((song) => song.id === id);
+    const newSongPosition = songPosition + 1;
+
+    !songs[newSongPosition]
+      ? dispatch(addActiveSongActionCreator({} as Song))
+      : dispatch(addActiveSongActionCreator(songs[newSongPosition]));
+  };
+
+  return { addSong, addActiveSong, nextSong };
 };
 
 export default useSong;
