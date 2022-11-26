@@ -9,14 +9,14 @@ interface SongCardProps {
 }
 
 const SongCard = ({
-  song: { title, artist, picture, time, album, audio },
+  song: { title, artist, picture, time, album, audio, id },
   songPosition,
 }: SongCardProps): JSX.Element => {
   const { addActiveSong } = useSong();
 
   const callActiveSong = () => {
     addActiveSong({
-      id: `${Date.now()}`,
+      id: id,
       title: title,
       album: album,
       artist: artist,

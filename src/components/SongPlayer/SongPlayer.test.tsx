@@ -5,16 +5,7 @@ import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import SongPlayer from "./SongPlayer";
 
 describe("Given a Song player component", () => {
-  const { title, artist, album, audio, picture: image } = mockSong;
-  const SongPlayerComponent = (
-    <SongPlayer
-      title={title}
-      artist={artist}
-      album={album}
-      audio={audio}
-      picture={image}
-    />
-  );
+  const SongPlayerComponent = <SongPlayer song={mockSong} />;
   const componentWithOptions: WrapperProps = {
     children: SongPlayerComponent,
     renderOptions: {},
@@ -24,9 +15,9 @@ describe("Given a Song player component", () => {
     test("Then it should show the title of the song, the artist and the album", () => {
       WrapperRender(componentWithOptions);
 
-      const songTitle = screen.queryByText(title);
-      const songAlbum = screen.queryByText(album);
-      const songArtist = screen.queryByText(artist);
+      const songTitle = screen.queryByText(mockSong.title);
+      const songAlbum = screen.queryByText(mockSong.album);
+      const songArtist = screen.queryByText(mockSong.artist);
 
       expect(songTitle).toBeInTheDocument();
       expect(songArtist).toBeInTheDocument();
@@ -44,10 +35,12 @@ describe("Given a Song player component", () => {
     test("Then it should show a picture with The name of the album as accesible name and the picture as src", () => {
       WrapperRender(componentWithOptions);
 
-      const picture = screen.queryByRole("img", { name: `Album ${album}` });
+      const picture = screen.queryByRole("img", {
+        name: `Album ${mockSong.album}`,
+      });
 
       expect(picture).toBeInTheDocument();
-      expect(picture).toHaveAttribute("src", image);
+      expect(picture).toHaveAttribute("src", mockSong.picture);
     });
   });
 });

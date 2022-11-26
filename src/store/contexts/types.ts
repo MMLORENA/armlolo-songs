@@ -17,5 +17,5 @@ export interface SongToPlay {
 }
 export interface Song extends SongToPlay {
   id: string;
-  time: string;
+  time?: string;
 }
