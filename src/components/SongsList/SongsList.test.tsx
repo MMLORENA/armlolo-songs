@@ -10,7 +10,7 @@ describe("Given a SongsList Component", () => {
       const expectedText = "No songs available";
 
       WrapperRender({
-        view: <SongsList />,
+        children: <SongsList />,
         renderOptions: {},
       });
       const resultText = screen.getByText(expectedText);
@@ -22,7 +22,7 @@ describe("Given a SongsList Component", () => {
   describe("When it's render with a list of 2 songs", () => {
     const mockSongsList = mockListSong;
     const componentWithOptions = {
-      view: <SongsList />,
+      children: <SongsList />,
       renderOptions: { currentState: mockStructureSongsData },
     };
 

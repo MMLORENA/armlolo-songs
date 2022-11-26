@@ -10,7 +10,7 @@ describe("Given the Heading Component", () => {
       const text: string = "Hello";
 
       WrapperRender({
-        view: <Heading level={level} children={text} className="" />,
+        children: <Heading level={level} children={text} className="" />,
         renderOptions: {},
       });
       const resultTitle = screen.getByRole("heading", {
