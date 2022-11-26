@@ -7,6 +7,7 @@ import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 
 const mockAddActiveSong = jest.fn();
+jest.useFakeTimers();
 
 jest.mock("../../hooks/useSong", () => () => ({
   addActiveSong: mockAddActiveSong,
@@ -41,7 +42,10 @@ describe("Given a SongCard Component", () => {
 
         await userEvent.click(altSong);
 
-        expect(mockAddActiveSong).toHaveBeenCalled();
+        expect(mockAddActiveSong).toHaveBeenCalledWith({
+          ...mockSongTest,
+          id: `${Date.now()}`,
+        });
       });
     });
   });
