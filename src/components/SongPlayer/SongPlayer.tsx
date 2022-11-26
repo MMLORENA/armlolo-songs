@@ -1,13 +1,15 @@
-import { SongToPlay } from "../../store/contexts/types";
+import useSong from "../../hooks/useSong";
+import { Song } from "../../store/contexts/types";
 import SongPlayerStyled from "./SongPlayerStyled";
 
+interface SongPlayerProps {
+  song: Song;
+}
+
 const SongPlayer = ({
-  title,
-  artist,
-  picture,
-  album,
-  audio,
-}: SongToPlay): JSX.Element => {
+  song: { title, artist, picture, album, audio, id },
+}: SongPlayerProps): JSX.Element => {
+  const { nextSong } = useSong();
   return (
     <SongPlayerStyled>
       <img
@@ -29,6 +31,7 @@ const SongPlayer = ({
           aria-label="Song Player"
           src={audio}
           className="song-data__audio"
+          onEnded={() => nextSong(id)}
         ></audio>
       </div>
     </SongPlayerStyled>
