@@ -3,7 +3,11 @@ import { Buffer } from "buffer";
 import process from "process";
 import { useContext } from "react";
 import SongsContext from "../store/contexts/SongsContext/SongsContext";
-import { addSongActionCreator } from "../store/actions/actionsSongs/actionsCreatorSongs";
+import {
+  addActiveSongActionCreator,
+  addSongActionCreator,
+} from "../store/actions/actionsSongs/actionsCreatorSongs";
+import { Song } from "../store/contexts/types";
 
 window.Buffer = Buffer;
 window.process = process;
@@ -38,7 +42,28 @@ const useSong = () => {
     };
   };
 
-  return { addSong };
+  const addActiveSong = async ({
+    title,
+    album,
+    artist,
+    time,
+    audio,
+    picture,
+  }: Song) => {
+    dispatch(
+      addActiveSongActionCreator({
+        id: `${Date.now()}`,
+        title: title,
+        album: album,
+        artist: artist,
+        time: time,
+        audio: audio,
+        picture: picture,
+      })
+    );
+  };
+
+  return { addSong, addActiveSong };
 };
 
 export default useSong;
