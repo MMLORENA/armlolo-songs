@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import mockDispatch from "../testUtils/mocks/mockDispatch/mockDispatch";
+import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
 import Wrapper from "../testUtils/wrappers/Wrapper";
 import useSong from "./useSong";
 
@@ -52,6 +53,29 @@ describe("Given the useSong custom hook function", () => {
       reader.onloadend!({} as ProgressEvent<FileReader>);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
+    });
+
+    describe("When addActiveSong it's called with a song", () => {
+      test("Then dispatch has to been called with the music info", async () => {
+        jest.useFakeTimers();
+
+        const expectedPayload = {
+          type: "addActiveSong",
+          payload: { ...mockSong, id: `${Date.now()}` },
+        };
+
+        const { result } = renderHook(() => useSong(), {
+          wrapper: ({ children }) => (
+            <Wrapper wrapperOptions={{ dispatch: mockDispatch }}>
+              {children}
+            </Wrapper>
+          ),
+        });
+
+        await result.current.addActiveSong(mockSong);
+
+        expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
+      });
     });
   });
 });
