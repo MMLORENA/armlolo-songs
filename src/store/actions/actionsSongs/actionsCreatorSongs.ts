@@ -10,3 +10,8 @@ export const addSongActionCreator = (song: Song): AddSongAction => ({
   type: "addSong",
   payload: song,
 });
+
+export const addActiveSongActionCreator = (song: Song): AddSongAction => ({
+  type: "addActiveSong",
+  payload: song,
+});

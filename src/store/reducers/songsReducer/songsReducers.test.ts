@@ -4,11 +4,12 @@ import {
 } from "../../../mocks/mockSongsData/mockSongsData";
 import { mockStructureSongsData } from "../../../mocks/mockStructureSongsData/mockStrutureSongsData";
 import {
+  addActiveSongActionCreator,
   addSongActionCreator,
   loadSongsActionCreator,
 } from "../../actions/actionsSongs/actionsCreatorSongs";
 import { SongAction } from "../../actions/actionsSongs/types/actionsSongs";
-import { SongsStructure } from "../../contexts/types";
+import { SongsStructure, Song } from "../../contexts/types";
 import songsReducer from "./songsReducer";
 
 describe("Given the songsReducers function", () => {
@@ -35,6 +36,23 @@ describe("Given the songsReducers function", () => {
       };
 
       const newState = songsReducer(mockStructureSongsData, addSongAction);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+
+  describe("When it's called with a previous state and and action with type 'addActiveSongs' and a song", () => {
+    test("Then it should return a new state same previous state with the new song received", () => {
+      const addSongAction = addActiveSongActionCreator(mockSong);
+      const expectedNewState: SongsStructure = {
+        songActive: mockSong,
+        songs: [...mockListSong],
+      };
+
+      const newState = songsReducer(
+        { ...mockStructureSongsData, songActive: {} as Song },
+        addSongAction
+      );
 
       expect(newState).toStrictEqual(expectedNewState);
     });
