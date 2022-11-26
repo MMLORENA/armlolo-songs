@@ -1,12 +1,14 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { wrappedRender } from "../../testUtils/wrappedRender";
+import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import AddSong from "./AddSong";
 
 describe("Given the Add Song component", () => {
   describe("When it's render", () => {
+    const componentWithOptions = { view: <AddSong />, renderOptions: {} };
+
     test("Then should show an input with 'Click here to provide a song' as label text", () => {
-      wrappedRender(<AddSong />);
+      WrapperRender(componentWithOptions);
 
       const audioInput = screen.getByLabelText("Click here to provide a song");
 
@@ -14,7 +16,7 @@ describe("Given the Add Song component", () => {
     });
 
     test("Then if the user add an input it should show a text with the name od the input", () => {
-      wrappedRender(<AddSong />);
+      WrapperRender(componentWithOptions);
 
       const audioInput = screen.getByLabelText("Click here to provide a song");
 

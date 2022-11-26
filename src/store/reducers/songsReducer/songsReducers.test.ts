@@ -1,8 +1,8 @@
 import {
   mockListSong,
   mockSong,
-} from "../../../mocks/mockSongsData/mockSongsData";
-import { mockStructureSongsData } from "../../../mocks/mockStructureSongsData/mockStrutureSongsData";
+} from "../../../testUtils/mocks/mockSongsData/mockSongsData";
+import { mockStructureSongsData } from "../../../testUtils/mocks/mockStructureSongsData/mockStrutureSongsData";
 import {
   addActiveSongActionCreator,
   addSongActionCreator,

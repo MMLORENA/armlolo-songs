@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
-import { mockSong } from "../../mocks/mockSongsData/mockSongsData";
-import { wrappedRender } from "../../testUtils/wrappedRender";
+import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
+import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import SongPlayer from "./SongPlayer";
 
 describe("Given a Song player component", () => {
@@ -14,10 +14,11 @@ describe("Given a Song player component", () => {
       picture={image}
     />
   );
+  const componentWithOptions = { view: SongPlayerComponent, renderOptions: {} };
 
   describe("When it is rendered with a song song title, album, artist, audio and a picture", () => {
     test("Then it should show the title of the song, the artist and the album", () => {
-      wrappedRender(SongPlayerComponent);
+      WrapperRender(componentWithOptions);
 
       const songTitle = screen.queryByText(title);
       const songAlbum = screen.queryByText(album);
@@ -29,7 +30,7 @@ describe("Given a Song player component", () => {
     });
 
     test("Then it should show an audio player with the accesible name of song player", () => {
-      wrappedRender(SongPlayerComponent);
+      WrapperRender(componentWithOptions);
 
       const audioPlayer = screen.queryByLabelText("Song Player");
 
@@ -37,7 +38,7 @@ describe("Given a Song player component", () => {
     });
 
     test("Then it should show a picture with The name of the album as accesible name and the picture as src", () => {
-      wrappedRender(SongPlayerComponent);
+      WrapperRender(componentWithOptions);
 
       const picture = screen.queryByRole("img", { name: `Album ${album}` });
 

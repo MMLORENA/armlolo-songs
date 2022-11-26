@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { wrappedRender } from "../../testUtils/wrappedRender";
+import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import Homepage from "./Homepage";
 
 describe("Given the Homepage page", () => {
@@ -7,7 +7,7 @@ describe("Given the Homepage page", () => {
     test("Then it should show 'Homepage' in a heading level 2", () => {
       const title = "Homepage";
 
-      wrappedRender(<Homepage />);
+      WrapperRender({ view: <Homepage />, renderOptions: {} });
 
       const homepageTitle = screen.getByRole("heading", {
         name: title,
