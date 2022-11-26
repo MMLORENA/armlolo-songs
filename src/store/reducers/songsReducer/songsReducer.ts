@@ -25,6 +25,12 @@ const songsReducer = (
         songs: [...previewSongsState.songs, (action as AddSongAction).payload],
       };
       break;
+    case "addActiveSong":
+      newSongsState = {
+        ...previewSongsState,
+        songActive: (action as AddSongAction).payload,
+      };
+      break;
 
     default:
       newSongsState = { ...previewSongsState };
