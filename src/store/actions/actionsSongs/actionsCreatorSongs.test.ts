@@ -53,7 +53,7 @@ describe("Given the deleteSongActionCreator function", () => {
   describe("When its called with id song 1", () => {
     test("Then it should return an action with type 'deleteSong' and payload with song id '1'", () => {
       const expectedTypeAction: ActionTypesSong = "deleteSong";
-      const expectedIdSong: number = 1;
+      const expectedIdSong: string = "1";
 
       const deleteSongAction = deleteSongActionCreator(expectedIdSong);
 
