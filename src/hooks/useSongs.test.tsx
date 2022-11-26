@@ -1,5 +1,8 @@
+import { addActiveSongActionCreator } from "../store/actions/actionsSongs/actionsCreatorSongs";
+import { Song } from "../store/contexts/types";
 import mockDispatch from "../testUtils/mocks/mockDispatch/mockDispatch";
 import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
+import { mockStructureSongsData } from "../testUtils/mocks/mockStructureSongsData/mockStrutureSongsData";
 import WrapperRenderHook from "../testUtils/wrappers/WrapperRenderHook";
 import useSong from "./useSong";
 
@@ -50,24 +53,66 @@ describe("Given the useSong custom hook function", () => {
 
       expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
     });
+  });
 
-    describe("When addActiveSong it's called with a song", () => {
-      test("Then dispatch has to been called with the music info", async () => {
-        jest.useFakeTimers();
+  describe("When addActiveSong it's called with a song", () => {
+    test("Then dispatch has to been called with the music info", async () => {
+      jest.useFakeTimers();
 
-        const expectedPayload = {
-          type: "addActiveSong",
-          payload: mockSong,
-        };
+      const expectedPayload = {
+        type: "addActiveSong",
+        payload: mockSong,
+      };
+
+      const { result } = WrapperRenderHook({
+        customHook: useSong,
+        renderOptions: { dispatch: mockDispatch },
+      });
+
+      await result.current.addActiveSong(mockSong);
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
+    });
+  });
+
+  describe("When nextSong it's called", () => {
+    describe("And receives an id of first song from list of songs", () => {
+      test("Then dispatch must to be called with second song from list of songs", () => {
+        const actualIdSong = mockStructureSongsData.songs[0].id;
+        const expectedSongActiveAction = addActiveSongActionCreator(
+          mockStructureSongsData.songs[1]
+        );
 
         const { result } = WrapperRenderHook({
           customHook: useSong,
-          renderOptions: { dispatch: mockDispatch },
+          renderOptions: {
+            currentState: mockStructureSongsData,
+            dispatch: mockDispatch,
+          },
         });
 
-        await result.current.addActiveSong(mockSong);
+        result.current.nextSong(actualIdSong);
 
-        expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
+        expect(mockDispatch).toHaveBeenCalledWith(expectedSongActiveAction);
+      });
+    });
+
+    describe("And receives an id of last song from list of songs", () => {
+      test("Then dispatch must to be called with empty song", () => {
+        const actualIdSong = mockStructureSongsData.songs[1].id;
+        const expectedSongActiveAction = addActiveSongActionCreator({} as Song);
+
+        const { result } = WrapperRenderHook({
+          customHook: useSong,
+          renderOptions: {
+            currentState: mockStructureSongsData,
+            dispatch: mockDispatch,
+          },
+        });
+
+        result.current.nextSong(actualIdSong);
+
+        expect(mockDispatch).toHaveBeenCalledWith(expectedSongActiveAction);
       });
     });
   });
