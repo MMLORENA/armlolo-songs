@@ -17,9 +17,9 @@ const SongCard = ({
   const callActiveSong = () => {
     addActiveSong({
       id: `${Date.now()}`,
-      title: title!,
-      album: album!,
-      artist: artist!,
+      title: title,
+      album: album,
+      artist: artist,
       time: time,
       audio: audio,
       picture: picture,
