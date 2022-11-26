@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import SongsList from "./SongsList";
 import { mockListSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
-import initialSongsContextState from "../../store/contexts/SongsContext/initialSongsState/initialSongState";
+import { mockStructureSongsData } from "../../testUtils/mocks/mockStructureSongsData/mockStrutureSongsData";
 
 describe("Given a SongsList Component", () => {
   describe("When it's render with any list of songs", () => {
@@ -11,7 +11,7 @@ describe("Given a SongsList Component", () => {
 
       WrapperRender({
         view: <SongsList />,
-        renderOptions: { currentState: initialSongsContextState },
+        renderOptions: {},
       });
       const resultText = screen.getByText(expectedText);
 
@@ -21,7 +21,10 @@ describe("Given a SongsList Component", () => {
 
   describe("When it's render with a list of 2 songs", () => {
     const mockSongsList = mockListSong;
-    const componentWithOptions = { view: <SongsList />, renderOptions: {} };
+    const componentWithOptions = {
+      view: <SongsList />,
+      renderOptions: { currentState: mockStructureSongsData },
+    };
 
     test("Then it should show 2 titles songs in a heading level 3 inside", () => {
       WrapperRender(componentWithOptions);

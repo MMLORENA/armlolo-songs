@@ -17,11 +17,11 @@ interface WrapperProps {
 
 const Wrapper = ({
   children,
-  wrapperOptions: { currentState = mockStructureSongsData, dispatch },
+  wrapperOptions: { currentState, dispatch },
 }: WrapperProps): JSX.Element => {
   const MockStateProvider = ({ children }: PropsWithChildren): JSX.Element => {
     return dispatch ? (
-      <SongsContext.Provider value={{ ...currentState, dispatch }}>
+      <SongsContext.Provider value={{ ...currentState!, dispatch }}>
         {children}
       </SongsContext.Provider>
     ) : (
