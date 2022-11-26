@@ -1,4 +1,5 @@
 import * as musicMetaData from "music-metadata-browser";
+import { toast } from "react-toastify";
 import { Buffer } from "buffer";
 import process from "process";
 import { useContext } from "react";
@@ -16,30 +17,41 @@ const useSong = () => {
   const { dispatch } = useContext(SongsContext);
 
   const addSong = async (songFile: File) => {
-    const reader = new FileReader();
-    await reader.readAsDataURL(songFile);
+    try {
+      const reader = new FileReader();
+      await reader.readAsDataURL(songFile);
 
-    const {
-      common: { title, album, artist, picture },
-      format: { duration },
-    } = await musicMetaData.parseBlob(songFile);
+      const {
+        common: { title, album, artist, picture },
+        format: { duration },
+      } = await musicMetaData.parseBlob(songFile);
 
-    reader.onloadend = () => {
-      const previewAudio = reader.result as string;
-      dispatch(
-        addSongActionCreator({
-          id: `${Date.now()}`,
-          title: title!,
-          album: album!,
-          artist: artist!,
-          time: `${duration!}`,
-          audio: previewAudio,
-          picture: URL.createObjectURL(
-            new Blob([picture![0].data], { type: "image/png" } /* (1) */)
-          ),
-        })
-      );
-    };
+      reader.onloadend = () => {
+        const previewAudio = reader.result as string;
+        dispatch(
+          addSongActionCreator({
+            id: `${Date.now()}`,
+            title: title!,
+            album: album!,
+            artist: artist!,
+            time: `${duration!}`,
+            audio: previewAudio,
+            picture: URL.createObjectURL(
+              new Blob([picture![0].data], { type: "image/png" } /* (1) */)
+            ),
+          })
+        );
+      };
+
+      const notify = () =>
+        toast.success("🎶 Your Song has been added successfully");
+
+      notify();
+    } catch {
+      const notify = () => toast.error("🔇 Oops!, something went wrong");
+
+      notify();
+    }
   };
 
   const addActiveSong = async ({
