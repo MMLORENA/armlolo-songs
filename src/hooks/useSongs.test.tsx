@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
-import mockDispatch from "../testUtils/mockDispatch";
-import MockWrapper from "../testUtils/MockWrapper";
+import mockDispatch from "../testUtils/mocks/mockDispatch/mockDispatch";
+import Wrapper from "../testUtils/wrappers/Wrapper";
 import useSong from "./useSong";
 
 jest.mock("music-metadata-browser", () => ({
@@ -37,7 +37,14 @@ describe("Given the useSong custom hook function", () => {
         },
       };
 
-      const { result } = renderHook(() => useSong(), { wrapper: MockWrapper });
+      const { result } = renderHook(() => useSong(), {
+        wrapper: ({ children }) => (
+          <Wrapper wrapperOptions={{ dispatch: mockDispatch }}>
+            {children}
+          </Wrapper>
+        ),
+      });
+
       await result.current.addSong(new File([], ""));
 
       URL.createObjectURL = jest.fn().mockReturnValue("");

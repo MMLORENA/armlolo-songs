@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { wrappedRender } from "../../testUtils/wrappedRender";
+import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import Button from "./Button";
 
 describe("Given the Button component", () => {
@@ -8,9 +8,10 @@ describe("Given the Button component", () => {
 
   describe("When it receives text 'Delete'", () => {
     test("Then should show 'Delete' inside the button", () => {
-      wrappedRender(
-        <Button text={textButton} action={() => {}} type="button" />
-      );
+      WrapperRender({
+        view: <Button text={textButton} action={() => {}} type="button" />,
+        renderOptions: {},
+      });
 
       const button = screen.queryByRole("button", { name: textButton });
 
@@ -22,7 +23,11 @@ describe("Given the Button component", () => {
     test("Then the received action should be called", async () => {
       const mockAction = jest.fn();
 
-      wrappedRender(<Button text="Test" action={mockAction} type="button" />);
+      WrapperRender({
+        view: <Button text="Test" action={mockAction} type="button" />,
+        renderOptions: {},
+      });
+
       const button = screen.getByRole("button", { name: "Test" });
       await userEvent.click(button);
 

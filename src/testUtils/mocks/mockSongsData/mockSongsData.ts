@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Factory } from "fishery";
-import { Song } from "../../store/contexts/types";
+import { Song } from "../../../store/contexts/types";
 
 const numberOfSongs = 2;
 

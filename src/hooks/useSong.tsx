@@ -10,6 +10,7 @@ window.process = process;
 
 const useSong = () => {
   const { dispatch } = useContext(SongsContext);
+  debugger;
 
   const addSong = async (songFile: File) => {
     const reader = new FileReader();
@@ -22,7 +23,6 @@ const useSong = () => {
 
     reader.onloadend = () => {
       const previewAudio = reader.result as string;
-      console.log(previewAudio);
       dispatch(
         addSongActionCreator({
           id: `${Date.now()}`,

@@ -1,7 +1,7 @@
 import {
   mockListSong,
   mockSong,
-} from "../../../mocks/mockSongsData/mockSongsData";
+} from "../../../testUtils/mocks/mockSongsData/mockSongsData";
 import {
   addSongActionCreator,
   loadSongsActionCreator,

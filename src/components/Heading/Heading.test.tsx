@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { wrappedRender } from "../../testUtils/wrappedRender";
+import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import Heading from "./Heading";
 import { HeadingLevel } from "./types";
 
@@ -9,7 +9,10 @@ describe("Given the Heading Component", () => {
       const level: HeadingLevel = 1;
       const text: string = "Hello";
 
-      wrappedRender(<Heading level={level} children={text} className="" />);
+      WrapperRender({
+        view: <Heading level={level} children={text} className="" />,
+        renderOptions: {},
+      });
       const resultTitle = screen.getByRole("heading", {
         level: level,
         name: text,

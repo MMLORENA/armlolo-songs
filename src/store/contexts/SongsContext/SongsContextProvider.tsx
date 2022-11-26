@@ -6,7 +6,7 @@ import SongsContext from "./SongsContext";
 
 interface SongsContextProviderProps {
   children: JSX.Element | JSX.Element[];
-  initialSongState: SongsStructure;
+  initialSongState?: SongsStructure;
 }
 
 const SongsContextProvider = ({
