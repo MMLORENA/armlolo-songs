@@ -56,7 +56,7 @@ describe("Given the useSong custom hook function", () => {
   });
 
   describe("When addActiveSong it's called with a song", () => {
-    test("Then dispatch has to been called with the music info", async () => {
+    test("Then dispatch has to been called with the music info", () => {
       jest.useFakeTimers();
 
       const expectedPayload = {
@@ -69,7 +69,7 @@ describe("Given the useSong custom hook function", () => {
         renderOptions: { dispatch: mockDispatch },
       });
 
-      await result.current.addActiveSong(mockSong);
+      result.current.addActiveSong(mockSong);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
     });

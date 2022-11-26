@@ -43,11 +43,11 @@ const useSong = () => {
     };
   };
 
-  const addActiveSong = async (song: Song) => {
+  const addActiveSong = (song: Song) => {
     dispatch(addActiveSongActionCreator(song));
   };
 
-  const nextSong = async (id: string) => {
+  const nextSong = (id: string) => {
     const songPosition = songs.findIndex((song) => song.id === id);
     const newSongPosition = songPosition + 1;
 
