@@ -1,6 +1,5 @@
 import mockDispatch from "../testUtils/mocks/mockDispatch/mockDispatch";
 import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
-import Wrapper from "../testUtils/wrappers/Wrapper";
 import WrapperRenderHook from "../testUtils/wrappers/WrapperRenderHook";
 import useSong from "./useSong";
 
@@ -61,12 +60,9 @@ describe("Given the useSong custom hook function", () => {
           payload: { ...mockSong, id: `${Date.now()}` },
         };
 
-        const { result } = renderHook(() => useSong(), {
-          wrapper: ({ children }) => (
-            <Wrapper wrapperOptions={{ dispatch: mockDispatch }}>
-              {children}
-            </Wrapper>
-          ),
+        const { result } = WrapperRenderHook({
+          customHook: useSong,
+          renderOptions: { dispatch: mockDispatch },
         });
 
         await result.current.addActiveSong(mockSong);

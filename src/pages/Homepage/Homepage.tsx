@@ -7,7 +7,7 @@ import HomepageStyled from "./HomepageStyled";
 
 const Homepage = (): JSX.Element => {
   const {
-    songActive: { time, title, artist, album, audio, picture },
+    songActive: { title, artist, album, audio, picture },
   } = useContext(SongsContext);
   return (
     <HomepageStyled className="homepage-container">
