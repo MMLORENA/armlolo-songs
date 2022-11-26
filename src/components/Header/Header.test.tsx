@@ -7,7 +7,7 @@ describe("Given the Header Component", () => {
     test("Then should show a 'Music Addicts' in a heading level 1", () => {
       const expectedTitle = "Armlolo Songs";
 
-      WrapperRender({ view: <Header />, renderOptions: {} });
+      WrapperRender({ children: <Header />, renderOptions: {} });
 
       const resultTitle = screen.getByRole("heading", {
         level: 1,

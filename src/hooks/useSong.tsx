@@ -10,7 +10,6 @@ window.process = process;
 
 const useSong = () => {
   const { dispatch } = useContext(SongsContext);
-  debugger;
 
   const addSong = async (songFile: File) => {
     const reader = new FileReader();

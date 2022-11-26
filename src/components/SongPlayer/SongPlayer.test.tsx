@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
+import { WrapperProps } from "../../testUtils/wrappers/types/types";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import SongPlayer from "./SongPlayer";
 
@@ -14,7 +15,10 @@ describe("Given a Song player component", () => {
       picture={image}
     />
   );
-  const componentWithOptions = { view: SongPlayerComponent, renderOptions: {} };
+  const componentWithOptions: WrapperProps = {
+    children: SongPlayerComponent,
+    renderOptions: {},
+  };
 
   describe("When it is rendered with a song song title, album, artist, audio and a picture", () => {
     test("Then it should show the title of the song, the artist and the album", () => {

@@ -1,11 +1,15 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { WrapperProps } from "../../testUtils/wrappers/types/types";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import AddSong from "./AddSong";
 
 describe("Given the Add Song component", () => {
   describe("When it's render", () => {
-    const componentWithOptions = { view: <AddSong />, renderOptions: {} };
+    const componentWithOptions: WrapperProps = {
+      children: <AddSong />,
+      renderOptions: {},
+    };
 
     test("Then should show an input with 'Click here to provide a song' as label text", () => {
       WrapperRender(componentWithOptions);
