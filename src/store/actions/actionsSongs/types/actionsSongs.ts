@@ -13,3 +13,7 @@ export interface LoadSongsAction extends SongAction {
 export interface AddSongAction extends SongAction {
   payload: Song;
 }
+
+export interface DeleteSongAction extends SongAction {
+  payload: number;
+}
