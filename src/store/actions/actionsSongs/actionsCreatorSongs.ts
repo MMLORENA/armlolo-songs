@@ -3,6 +3,7 @@ import {
   AddSongAction,
   DeleteSongAction,
   LoadSongsAction,
+  RemoveActiveSongAction,
 } from "./types/actionsSongs";
 
 export const loadSongsActionCreator = (songsList: Song[]): LoadSongsAction => ({
@@ -23,4 +24,8 @@ export const addActiveSongActionCreator = (song: Song): AddSongAction => ({
 export const deleteSongActionCreator = (id: string): DeleteSongAction => ({
   type: "deleteSong",
   payload: id,
+});
+
+export const RemoveActiveSongActionCreator = (): RemoveActiveSongAction => ({
+  type: "removeActiveSong",
 });
