@@ -10,6 +10,11 @@ const SongPlayer = ({
   song: { title, artist, picture, album, audio, id },
 }: SongPlayerProps): JSX.Element => {
   const { nextSong } = useSong();
+
+  const nextSongHandler = () => {
+    nextSong(id);
+  };
+
   return (
     <SongPlayerStyled>
       <img
@@ -31,7 +36,7 @@ const SongPlayer = ({
           aria-label="Song Player"
           src={audio}
           className="song-data__audio"
-          onEnded={() => nextSong(id)}
+          onEnded={nextSongHandler}
         ></audio>
       </div>
     </SongPlayerStyled>

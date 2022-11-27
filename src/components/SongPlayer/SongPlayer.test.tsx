@@ -1,8 +1,14 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import { WrapperProps } from "../../testUtils/wrappers/types/types";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import SongPlayer from "./SongPlayer";
+
+const mockNextSong = jest.fn();
+
+jest.mock("../../hooks/useSong", () => () => ({
+  nextSong: mockNextSong,
+}));
 
 describe("Given a Song player component", () => {
   const SongPlayerComponent = <SongPlayer song={mockSong} />;
@@ -41,6 +47,24 @@ describe("Given a Song player component", () => {
 
       expect(picture).toBeInTheDocument();
       expect(picture).toHaveAttribute("src", mockSong.picture);
+    });
+
+    describe("And music finish", () => {
+      test("Then dispatch must to be called with id of song received", () => {
+        const SongPlayerComponent = <SongPlayer song={mockSong} />;
+        const componentWithOptions: WrapperProps = {
+          children: SongPlayerComponent,
+          renderOptions: {},
+        };
+
+        WrapperRender(componentWithOptions);
+        const audioPlayer: HTMLAudioElement =
+          screen.getByLabelText("Song Player");
+
+        fireEvent.ended(audioPlayer);
+
+        expect(mockNextSong).toHaveBeenCalledWith(mockSong.id);
+      });
     });
   });
 });
