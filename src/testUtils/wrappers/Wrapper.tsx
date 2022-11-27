@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import SongsContext from "../../store/contexts/SongsContext/SongsContext";
 import SongsContextProvider from "../../store/contexts/SongsContext/SongsContextProvider";
@@ -8,7 +8,7 @@ import { WrapperProps } from "./types/types";
 
 const Wrapper = ({
   children,
-  renderOptions: { currentState, dispatch },
+  renderOptions: { currentState, dispatch, initialEntries },
 }: WrapperProps): JSX.Element => {
   const MockStateProvider = ({ children }: PropsWithChildren): JSX.Element => {
     return dispatch ? (
@@ -22,11 +22,19 @@ const Wrapper = ({
     );
   };
 
+  const Router = ({ children }: PropsWithChildren): JSX.Element => {
+    return initialEntries ? (
+      <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
+    ) : (
+      <BrowserRouter>{children}</BrowserRouter>
+    );
+  };
+
   return (
     <ThemeProvider theme={mainTheme}>
-      <BrowserRouter>
+      <Router>
         <MockStateProvider>{children}</MockStateProvider>
-      </BrowserRouter>
+      </Router>
     </ThemeProvider>
   );
 };
