@@ -7,10 +7,11 @@ import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 
 const mockAddActiveSong = jest.fn();
-jest.useFakeTimers();
+const mockdeleteSong = jest.fn();
 
 jest.mock("../../hooks/useSong", () => () => ({
   addActiveSong: mockAddActiveSong,
+  deleteSong: mockdeleteSong,
 }));
 
 describe("Given a SongCard Component", () => {
@@ -44,6 +45,20 @@ describe("Given a SongCard Component", () => {
 
         expect(mockAddActiveSong).toHaveBeenCalledWith(mockSongTest);
       });
+    });
+  });
+
+  describe("And the user click on delete button with '𝐱'", () => {
+    test("Then it should call the deleteSong function", async () => {
+      WrapperRender(componentWithOptions);
+
+      const deleteSong = screen.getByRole("button", {
+        name: "𝐱",
+      });
+
+      await userEvent.click(deleteSong);
+
+      expect(mockdeleteSong).toHaveBeenCalledWith(mockSong.id);
     });
   });
 
