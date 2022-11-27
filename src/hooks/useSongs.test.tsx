@@ -8,7 +8,7 @@ import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
 import { mockStructureSongsData } from "../testUtils/mocks/mockStructureSongsData/mockStrutureSongsData";
 import WrapperRenderHook from "../testUtils/wrappers/WrapperRenderHook";
 import useSong from "./useSong";
-import { toast } from "react-toastify";
+import mockToastify from "../testUtils/mocks/mockToastify/mockToastify";
 
 jest.mock("music-metadata-browser", () => ({
   ...jest.requireActual("music-metadata-browser"),
@@ -23,8 +23,8 @@ describe("Given the useSong custom hook function", () => {
     test("Then dispatch has to been called with the music info", async () => {
       jest.useFakeTimers();
 
-      const mockToastify = jest.fn();
-      toast.success = mockToastify;
+      const expectedToastifyMessage =
+        "🎶 Your Song has been added successfully";
 
       const fileReaderSpy = jest.spyOn(global, "FileReader").mockImplementation(
         (): FileReader => ({
@@ -59,14 +59,14 @@ describe("Given the useSong custom hook function", () => {
       reader.onloadend!({} as ProgressEvent<FileReader>);
 
       expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
-      expect(mockToastify).toHaveBeenCalled();
+      expect(mockToastify.success).toHaveBeenCalledWith(
+        expectedToastifyMessage
+      );
     });
   });
 
   describe("When addActiveSong it's called with a song", () => {
     test("Then dispatch has to been called with the music info", () => {
-      jest.useFakeTimers();
-
       const expectedPayload = {
         type: "addActiveSong",
         payload: mockSong,
@@ -126,11 +126,8 @@ describe("Given the useSong custom hook function", () => {
   });
 
   describe("When addActiveSong it's called without a song", () => {
-    test("Then notify error should haven been called", async () => {
-      const mockErrorToastify = jest.fn();
-      toast.error = mockErrorToastify;
-
-      jest.useFakeTimers();
+    test("Then notify error should haven been called with '🔇 Oops!, something went wrong'", async () => {
+      const expectedToastifyErrorMessage = "🔇 Oops!, something went wrong";
 
       const { result } = WrapperRenderHook({
         customHook: useSong,
@@ -139,7 +136,9 @@ describe("Given the useSong custom hook function", () => {
 
       await result.current.addSong(new File([], ""));
 
-      expect(mockErrorToastify).toHaveBeenCalled();
+      expect(mockToastify.error).toHaveBeenCalledWith(
+        expectedToastifyErrorMessage
+      );
     });
   });
 
