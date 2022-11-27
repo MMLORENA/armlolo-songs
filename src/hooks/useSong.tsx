@@ -7,6 +7,7 @@ import SongsContext from "../store/contexts/SongsContext/SongsContext";
 import {
   addActiveSongActionCreator,
   addSongActionCreator,
+  deleteSongActionCreator,
 } from "../store/actions/actionsSongs/actionsCreatorSongs";
 import { Song } from "../store/contexts/types";
 
@@ -69,7 +70,11 @@ const useSong = () => {
       : dispatch(addActiveSongActionCreator(songs[newSongPosition]));
   };
 
-  return { addSong, addActiveSong, nextSong };
+  const deleteSong = (id: string) => {
+    dispatch(deleteSongActionCreator(id));
+  };
+
+  return { addSong, addActiveSong, nextSong, deleteSong };
 };
 
 export default useSong;
