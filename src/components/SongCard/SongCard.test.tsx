@@ -1,3 +1,4 @@
+import mockCustomHookFunctions from "../../testUtils/mocks/mockCustomHook/mockCustomHook";
 import { screen } from "@testing-library/react";
 import { Song } from "../../store/contexts/types";
 import SongCard from "./SongCard";
@@ -5,14 +6,6 @@ import userEvent from "@testing-library/user-event";
 import { WrapperProps } from "../../testUtils/wrappers/types/types";
 import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
-
-const mockAddActiveSong = jest.fn();
-const mockdeleteSong = jest.fn();
-
-jest.mock("../../hooks/useSong", () => () => ({
-  addActiveSong: mockAddActiveSong,
-  deleteSong: mockdeleteSong,
-}));
 
 describe("Given a SongCard Component", () => {
   const mockSongTest: Song = mockSong;
@@ -43,7 +36,9 @@ describe("Given a SongCard Component", () => {
 
         await userEvent.click(altSong);
 
-        expect(mockAddActiveSong).toHaveBeenCalledWith(mockSongTest);
+        expect(mockCustomHookFunctions.addActiveSong).toHaveBeenCalledWith(
+          mockSongTest
+        );
       });
     });
   });
@@ -56,7 +51,9 @@ describe("Given a SongCard Component", () => {
 
       await userEvent.click(deleteSong);
 
-      expect(mockdeleteSong).toHaveBeenCalledWith(mockSong.id);
+      expect(mockCustomHookFunctions.deleteSong).toHaveBeenCalledWith(
+        mockSong.id
+      );
     });
   });
 

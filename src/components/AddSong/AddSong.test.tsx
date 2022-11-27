@@ -1,14 +1,9 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import mockCustomHookFunctions from "../../testUtils/mocks/mockCustomHook/mockCustomHook";
 import { WrapperProps } from "../../testUtils/wrappers/types/types";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import AddSong from "./AddSong";
-
-const mockAddSong = jest.fn();
-
-jest.mock("../../hooks/useSong", () => () => ({
-  addSong: mockAddSong,
-}));
 
 describe("Given the Add Song component", () => {
   describe("When it's render", () => {
@@ -48,7 +43,7 @@ describe("Given the Add Song component", () => {
 
         userEvent.click(submitButton);
 
-        expect(mockAddSong).not.toHaveBeenCalled();
+        expect(mockCustomHookFunctions.addSong).not.toHaveBeenCalled();
       });
     });
 
@@ -69,7 +64,7 @@ describe("Given the Add Song component", () => {
 
         userEvent.click(submitButton);
 
-        expect(mockAddSong).toHaveBeenCalledWith(fakeSong);
+        expect(mockCustomHookFunctions.addSong).toHaveBeenCalledWith(fakeSong);
       });
     });
   });

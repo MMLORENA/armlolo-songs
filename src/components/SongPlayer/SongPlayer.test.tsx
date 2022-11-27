@@ -1,14 +1,9 @@
 import { fireEvent, screen } from "@testing-library/react";
+import mockCustomHookFunctions from "../../testUtils/mocks/mockCustomHook/mockCustomHook";
 import { mockSong } from "../../testUtils/mocks/mockSongsData/mockSongsData";
 import { WrapperProps } from "../../testUtils/wrappers/types/types";
 import WrapperRender from "../../testUtils/wrappers/WrapperRender";
 import SongPlayer from "./SongPlayer";
-
-const mockNextSong = jest.fn();
-
-jest.mock("../../hooks/useSong", () => () => ({
-  nextSong: mockNextSong,
-}));
 
 describe("Given a Song player component", () => {
   const SongPlayerComponent = <SongPlayer song={mockSong} />;
@@ -63,7 +58,9 @@ describe("Given a Song player component", () => {
 
         fireEvent.ended(audioPlayer);
 
-        expect(mockNextSong).toHaveBeenCalledWith(mockSong.id);
+        expect(mockCustomHookFunctions.nextSong).toHaveBeenCalledWith(
+          mockSong.id
+        );
       });
     });
   });
