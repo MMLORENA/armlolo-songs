@@ -39,9 +39,11 @@ const useSong = () => {
             artist: artist!,
             time: `${duration!}`,
             audio: previewAudio,
-            picture: URL.createObjectURL(
-              new Blob([picture![0].data], { type: "image/png" } /* (1) */)
-            ),
+            picture: picture
+              ? URL.createObjectURL(
+                  new Blob([picture![0].data], { type: "image/png" } /* (1) */)
+                )
+              : "david.jpeg",
           })
         );
       };
