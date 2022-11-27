@@ -29,6 +29,7 @@ const useSong = () => {
 
       reader.onloadend = () => {
         const previewAudio = reader.result as string;
+        debugger;
         dispatch(
           addSongActionCreator({
             id: `${Date.now()}`,
