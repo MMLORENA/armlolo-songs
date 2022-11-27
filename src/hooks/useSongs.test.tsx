@@ -205,24 +205,52 @@ describe("Given the useSong custom hook function", () => {
     });
   });
 
-  describe("When deleteSong it's called with a id song", () => {
-    test("Then dispatch should have been called with an action 'deleteSonActionCreator' with the song id", async () => {
-      const idSong = mockStructureSongsData.songs[0].id;
-      const expectedDeleteSongActionCreator = deleteSongActionCreator(idSong);
+  describe("When deleteSong it's called with a id song different of active Song", () => {
+    describe("And id is different than active song", () => {
+      test("Then dispatch should have been called with an action 'deleteSonActionCreator' with the song id", async () => {
+        const idSong = mockStructureSongsData.songs[0].id;
+        const expectedDeleteSongActionCreator = deleteSongActionCreator(idSong);
 
-      const { result } = WrapperRenderHook({
-        customHook: useSong,
-        renderOptions: {
-          currentState: mockStructureSongsData,
-          dispatch: mockDispatch,
-        },
+        const { result } = WrapperRenderHook({
+          customHook: useSong,
+          renderOptions: {
+            currentState: mockStructureSongsData,
+            dispatch: mockDispatch,
+          },
+        });
+
+        result.current.deleteSong(idSong);
+
+        expect(mockDispatch).toHaveBeenCalledWith(
+          expectedDeleteSongActionCreator
+        );
       });
+    });
 
-      result.current.deleteSong(idSong);
+    describe("And id is same than active song", () => {
+      test("Then dispatch must to be called two times with 'removeActiveSong' and 'deleteSonActionCreator' with the song id", () => {
+        const idSong = mockStructureSongsData.songs[0].id;
+        const expectedRemoveActiveSongAction = removeActiveSongActionCreator();
+        const expectedDeleteSongAction = deleteSongActionCreator(idSong);
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        expectedDeleteSongActionCreator
-      );
+        const { result } = WrapperRenderHook({
+          customHook: useSong,
+          renderOptions: {
+            currentState: {
+              ...mockStructureSongsData,
+              songActive: mockStructureSongsData.songs[0],
+            },
+            dispatch: mockDispatch,
+          },
+        });
+
+        result.current.deleteSong(idSong);
+
+        expect(mockDispatch).toHaveBeenCalledWith(
+          expectedRemoveActiveSongAction
+        );
+        expect(mockDispatch).toHaveBeenCalledWith(expectedDeleteSongAction);
+      });
     });
   });
 });
