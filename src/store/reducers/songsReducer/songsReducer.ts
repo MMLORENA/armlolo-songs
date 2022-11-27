@@ -4,7 +4,7 @@ import {
   LoadSongsAction,
   SongAction,
 } from "../../actions/actionsSongs/types/actionsSongs";
-import { SongsStructure } from "../../contexts/types";
+import { Song, SongsStructure } from "../../contexts/types";
 
 const songsReducer = (
   previewSongsState: SongsStructure,
@@ -40,6 +40,13 @@ const songsReducer = (
         songs: previewSongsState.songs.filter(
           ({ id }) => id !== (action as DeleteSongAction).payload
         ),
+      };
+      break;
+
+    case "removeActiveSong":
+      newSongsState = {
+        ...previewSongsState,
+        songActive: {} as Song,
       };
       break;
 
