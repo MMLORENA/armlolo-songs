@@ -1,4 +1,7 @@
-import { addActiveSongActionCreator } from "../store/actions/actionsSongs/actionsCreatorSongs";
+import {
+  addActiveSongActionCreator,
+  deleteSongActionCreator,
+} from "../store/actions/actionsSongs/actionsCreatorSongs";
 import { Song } from "../store/contexts/types";
 import mockDispatch from "../testUtils/mocks/mockDispatch/mockDispatch";
 import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
@@ -137,6 +140,27 @@ describe("Given the useSong custom hook function", () => {
       await result.current.addSong(new File([], ""));
 
       expect(mockErrorToastify).toHaveBeenCalled();
+    });
+  });
+
+  describe("When deleteSong it's called with a id song", () => {
+    test("Then dispatch should have been called with 'deleteSonActionCreator' with the song id", async () => {
+      const idSong = mockStructureSongsData.songs[0].id;
+      const expectedDeleteSongActionCreator = deleteSongActionCreator(idSong);
+
+      const { result } = WrapperRenderHook({
+        customHook: useSong,
+        renderOptions: {
+          currentState: mockStructureSongsData,
+          dispatch: mockDispatch,
+        },
+      });
+
+      result.current.deleteSong(idSong);
+
+      expect(mockDispatch).toHaveBeenCalledWith(
+        expectedDeleteSongActionCreator
+      );
     });
   });
 });
