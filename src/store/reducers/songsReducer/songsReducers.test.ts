@@ -8,6 +8,7 @@ import {
   addSongActionCreator,
   deleteSongActionCreator,
   loadSongsActionCreator,
+  RemoveActiveSongActionCreator,
 } from "../../actions/actionsSongs/actionsCreatorSongs";
 import { SongAction } from "../../actions/actionsSongs/types/actionsSongs";
 import { SongsStructure, Song } from "../../contexts/types";
@@ -62,7 +63,7 @@ describe("Given the songsReducers function", () => {
   describe("When it's called with a previous state and an action with unknown type", () => {
     test("Then it should return a new state same the previous state", () => {
       const unknownAction: SongAction = { type: "unknown" };
-      const expectedNewState = { ...mockStructureSongsData };
+      const expectedNewState: SongsStructure = { ...mockStructureSongsData };
 
       const newState = songsReducer(mockStructureSongsData, unknownAction);
 
@@ -81,6 +82,20 @@ describe("Given the songsReducers function", () => {
       };
 
       const newState = songsReducer(mockStructureSongsData, deleteAction);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+
+  describe("When it's called with a previus state and an action type 'removeActiveSong'", () => {
+    test("Then it should return the same previous state with empty active song", () => {
+      const removeAction = RemoveActiveSongActionCreator();
+      const expectedNewState: SongsStructure = {
+        ...mockStructureSongsData,
+        songActive: {} as Song,
+      };
+
+      const newState = songsReducer(mockStructureSongsData, removeAction);
 
       expect(newState).toStrictEqual(expectedNewState);
     });
