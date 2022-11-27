@@ -16,8 +16,7 @@ window.Buffer = Buffer;
 window.process = process;
 
 const useSong = () => {
-  const { dispatch } = useContext(SongsContext);
-  const { songs } = useContext(SongsContext);
+  const { dispatch, songs, songActive } = useContext(SongsContext);
 
   const addSong = async (songFile: File) => {
     try {
@@ -42,7 +41,7 @@ const useSong = () => {
             audio: previewAudio,
             picture: picture
               ? URL.createObjectURL(
-                  new Blob([picture![0].data], { type: "image/png" } /* (1) */)
+                  new Blob([picture[0].data], { type: "image/png" } /* (1) */)
                 )
               : "david.jpeg",
           })
@@ -74,6 +73,10 @@ const useSong = () => {
   };
 
   const deleteSong = (id: string) => {
+    if (songActive.id === id) {
+      dispatch(removeActiveSongActionCreator());
+    }
+
     dispatch(deleteSongActionCreator(id));
   };
 
