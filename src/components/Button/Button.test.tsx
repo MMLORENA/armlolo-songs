@@ -26,6 +26,19 @@ describe("Given the Button component", () => {
     });
   });
 
+  describe("When it doesn't receives any text", () => {
+    test("Then should show a button with icon style", () => {
+      WrapperRender({
+        children: <Button action={() => {}} type="button" isDisable={false} />,
+        renderOptions: {},
+      });
+
+      const button = screen.queryByRole("button");
+
+      expect(button).toBeInTheDocument();
+    });
+  });
+
   describe("When it receives an action and user click the button", () => {
     test("Then the received action should be called", async () => {
       const mockAction = jest.fn();
