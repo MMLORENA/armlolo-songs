@@ -1,8 +1,8 @@
 import {
   addActiveSongActionCreator,
   deleteSongActionCreator,
+  removeActiveSongActionCreator,
 } from "../store/actions/actionsSongs/actionsCreatorSongs";
-import { Song } from "../store/contexts/types";
 import mockDispatch from "../testUtils/mocks/mockDispatch/mockDispatch";
 import { mockSong } from "../testUtils/mocks/mockSongsData/mockSongsData";
 import { mockStructureSongsData } from "../testUtils/mocks/mockStructureSongsData/mockStrutureSongsData";
@@ -148,7 +148,7 @@ describe("Given the useSong custom hook function", () => {
 
   describe("When nextSong it's called", () => {
     describe("And receives an id of first song from list of songs", () => {
-      test("Then dispatch must to be called with second song from list of songs", () => {
+      test("Then dispatch must to be called with an action type addActiveSong and second song from list of songs", () => {
         const actualIdSong = mockStructureSongsData.songs[0].id;
         const expectedSongActiveAction = addActiveSongActionCreator(
           mockStructureSongsData.songs[1]
@@ -169,9 +169,9 @@ describe("Given the useSong custom hook function", () => {
     });
 
     describe("And receives an id of last song from list of songs", () => {
-      test("Then dispatch must to be called with empty song", () => {
+      test("Then dispatch must to be called with an action type removeActiveSong and empty song", () => {
         const actualIdSong = mockStructureSongsData.songs[1].id;
-        const expectedSongActiveAction = addActiveSongActionCreator({} as Song);
+        const expectedAction = removeActiveSongActionCreator();
 
         const { result } = WrapperRenderHook({
           customHook: useSong,
@@ -183,7 +183,7 @@ describe("Given the useSong custom hook function", () => {
 
         result.current.nextSong(actualIdSong);
 
-        expect(mockDispatch).toHaveBeenCalledWith(expectedSongActiveAction);
+        expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
       });
     });
   });
@@ -206,7 +206,7 @@ describe("Given the useSong custom hook function", () => {
   });
 
   describe("When deleteSong it's called with a id song", () => {
-    test("Then dispatch should have been called with 'deleteSonActionCreator' with the song id", async () => {
+    test("Then dispatch should have been called with an action 'deleteSonActionCreator' with the song id", async () => {
       const idSong = mockStructureSongsData.songs[0].id;
       const expectedDeleteSongActionCreator = deleteSongActionCreator(idSong);
 

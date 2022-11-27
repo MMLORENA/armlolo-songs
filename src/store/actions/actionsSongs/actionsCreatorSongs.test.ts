@@ -7,7 +7,7 @@ import {
   addSongActionCreator,
   deleteSongActionCreator,
   loadSongsActionCreator,
-  RemoveActiveSongActionCreator,
+  removeActiveSongActionCreator,
 } from "./actionsCreatorSongs";
 import { RemoveActiveSongAction } from "./types/actionsSongs";
 import { ActionTypesSong } from "./types/actionsTypesSong";
@@ -72,7 +72,7 @@ describe("Given the removeActiveSongActionCreator function", () => {
         type: "removeActiveSong",
       };
 
-      const action = RemoveActiveSongActionCreator();
+      const action = removeActiveSongActionCreator();
 
       expect(action).toStrictEqual(expectedAction);
     });

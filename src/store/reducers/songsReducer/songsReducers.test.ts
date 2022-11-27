@@ -8,7 +8,7 @@ import {
   addSongActionCreator,
   deleteSongActionCreator,
   loadSongsActionCreator,
-  RemoveActiveSongActionCreator,
+  removeActiveSongActionCreator,
 } from "../../actions/actionsSongs/actionsCreatorSongs";
 import { SongAction } from "../../actions/actionsSongs/types/actionsSongs";
 import { SongsStructure, Song } from "../../contexts/types";
@@ -89,7 +89,7 @@ describe("Given the songsReducers function", () => {
 
   describe("When it's called with a previus state and an action type 'removeActiveSong'", () => {
     test("Then it should return the same previous state with empty active song", () => {
-      const removeAction = RemoveActiveSongActionCreator();
+      const removeAction = removeActiveSongActionCreator();
       const expectedNewState: SongsStructure = {
         ...mockStructureSongsData,
         songActive: {} as Song,
