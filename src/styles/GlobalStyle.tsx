@@ -53,6 +53,10 @@ ul,li {
     padding-inline-start: 0;
   }
 
+button {
+  padding: 0;
+}
+
 
 button, a {
   @media (min-width: 768px) {
