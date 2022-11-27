@@ -1,5 +1,7 @@
 import useSong from "../../hooks/useSong";
 import { Song } from "../../store/contexts/types";
+import secondsToSongTime from "../../utils/secondsToSongTime/secondsToSongTime";
+import Button from "../Button/Button";
 import Heading from "../Heading/Heading";
 import SongCardStyled from "./SongCardStyled";
 
@@ -12,7 +14,7 @@ const SongCard = ({
   song: { title, artist, picture, time, album, audio, id },
   songPosition,
 }: SongCardProps): JSX.Element => {
-  const { addActiveSong } = useSong();
+  const { addActiveSong, deleteSong } = useSong();
 
   const callActiveSong = () => {
     addActiveSong({
@@ -24,6 +26,10 @@ const SongCard = ({
       audio: audio,
       picture: picture,
     });
+  };
+
+  const callDeleteSong = () => {
+    deleteSong(id);
   };
 
   return (
@@ -42,6 +48,7 @@ const SongCard = ({
         <span className="song__album">{album}</span>
         <span className="song__duration">{time}</span>
       </section>
+      <Button text="𝐱" type="button" action={callDeleteSong} />
     </SongCardStyled>
   );
 };
