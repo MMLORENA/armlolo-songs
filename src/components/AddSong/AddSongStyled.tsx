@@ -16,6 +16,8 @@ const AddSongStyled = styled.form`
     &__input-label {
       text-align: center;
       font-size: 1.1rem;
+      color: ${({ theme: { colors } }) => colors.primaryColor};
+      cursor: pointer;
     }
 
     &__input {

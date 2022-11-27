@@ -20,6 +20,8 @@ const AddSong = (): JSX.Element => {
     setAudioInfo(noAudioSelected);
   };
 
+  const isSongLoaded = audioInfo.songName !== "";
+
   return (
     <AddSongStyled className="add-audio" onSubmit={handleOnsubmit}>
       <label className="add-audio__input-label">
@@ -32,7 +34,7 @@ const AddSong = (): JSX.Element => {
         />
       </label>
       <span className="add-audio__selected-file">{audioInfo.songName}</span>
-      <Button isDisable={false} text="Send Song" type="submit" />
+      <Button isDisable={!isSongLoaded} text="Send Song" type="submit" />
     </AddSongStyled>
   );
 };
