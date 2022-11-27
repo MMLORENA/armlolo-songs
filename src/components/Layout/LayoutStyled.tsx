@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AppStyled = styled.div`
+const LayoutStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,11 +12,6 @@ const AppStyled = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-
-  .a {
-    display: flex;
-    flex-direction: column;
-  }
 `;
 
-export default AppStyled;
+export default LayoutStyled;
