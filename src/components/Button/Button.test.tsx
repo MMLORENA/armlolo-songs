@@ -9,11 +9,31 @@ describe("Given the Button component", () => {
   describe("When it receives text 'Delete'", () => {
     test("Then should show 'Delete' inside the button", () => {
       WrapperRender({
-        children: <Button text={textButton} action={() => {}} type="button" />,
+        children: (
+          <Button
+            text={textButton}
+            action={() => {}}
+            type="button"
+            isDisable={false}
+          />
+        ),
         renderOptions: {},
       });
 
       const button = screen.queryByRole("button", { name: textButton });
+
+      expect(button).toBeInTheDocument();
+    });
+  });
+
+  describe("When it doesn't receives any text", () => {
+    test("Then should show a button with icon style", () => {
+      WrapperRender({
+        children: <Button action={() => {}} type="button" isDisable={false} />,
+        renderOptions: {},
+      });
+
+      const button = screen.queryByRole("button");
 
       expect(button).toBeInTheDocument();
     });
@@ -24,7 +44,14 @@ describe("Given the Button component", () => {
       const mockAction = jest.fn();
 
       WrapperRender({
-        children: <Button text="Test" action={mockAction} type="button" />,
+        children: (
+          <Button
+            text="Test"
+            action={mockAction}
+            type="button"
+            isDisable={false}
+          />
+        ),
         renderOptions: {},
       });
 

@@ -52,9 +52,7 @@ describe("Given a SongCard Component", () => {
     test("Then it should call the deleteSong function", async () => {
       WrapperRender(componentWithOptions);
 
-      const deleteSong = screen.getByRole("button", {
-        name: "𝐱",
-      });
+      const deleteSong = screen.getByRole("button");
 
       await userEvent.click(deleteSong);
 
