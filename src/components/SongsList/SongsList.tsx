@@ -10,7 +10,7 @@ const SongsList = (): JSX.Element => {
   return (
     <>
       <SongsListStyled>
-        {songs && (
+        {songs.length !== 0 && (
           <ul className="songs-container">
             {songs.map((song: Song, position) => (
               <SongCard songPosition={position + 1} song={song} key={song.id} />
