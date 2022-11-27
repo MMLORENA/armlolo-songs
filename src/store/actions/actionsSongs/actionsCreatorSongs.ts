@@ -26,6 +26,6 @@ export const deleteSongActionCreator = (id: string): DeleteSongAction => ({
   payload: id,
 });
 
-export const RemoveActiveSongActionCreator = (): RemoveActiveSongAction => ({
+export const removeActiveSongActionCreator = (): RemoveActiveSongAction => ({
   type: "removeActiveSong",
 });

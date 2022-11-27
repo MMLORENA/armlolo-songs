@@ -8,7 +8,7 @@ no_color='\033[0m'
 
 echo -e "\n${yellow}Executing pre-commit hook...${no_color}\n"
 
-FILES_PATTERN='\.(js|ts)(\..+)?$'
+FILES_PATTERN='\.(js|ts|jsx|tsx)(\..+)?$'
 FORBIDDEN='console\.[clear|dir|log|info|warn|error]'
 
 #check for console. references in your code
