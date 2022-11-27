@@ -27,8 +27,10 @@ const buttonStyle = css`
 const iconStyle = css`
   border-radius: 50px;
   border: ${({ theme: { colors } }) => colors.primaryColor} 2px solid;
-  width: 30px;
-  height: 30px;
+  width: fit-content;
+  height: fit-content;
+  min-width: 2rem;
+  min-height: 2rem;
   background-color: ${({ theme: { colors } }) => colors.mainLight};
   color: ${({ theme: { colors } }) => colors.secondaryColor};
 
