@@ -6,6 +6,7 @@ import App from "./components/App/App";
 import mainTheme from "./styles/mainTheme";
 import SongsContextProvider from "./store/contexts/SongsContext/SongsContextProvider";
 import { BrowserRouter } from "react-router-dom";
+import GlobalStyle from "./styles/GlobalStyle";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,6 +16,7 @@ root.render(
     <SongsContextProvider>
       <BrowserRouter>
         <ThemeProvider theme={mainTheme}>
+          <GlobalStyle />
           <App />
         </ThemeProvider>
       </BrowserRouter>
