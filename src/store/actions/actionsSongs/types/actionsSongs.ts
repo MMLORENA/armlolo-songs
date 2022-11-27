@@ -17,3 +17,5 @@ export interface AddSongAction extends SongAction {
 export interface DeleteSongAction extends SongAction {
   payload: string;
 }
+
+export interface RemoveActiveSongAction extends SongAction {}

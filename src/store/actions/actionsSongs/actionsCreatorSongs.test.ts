@@ -7,7 +7,9 @@ import {
   addSongActionCreator,
   deleteSongActionCreator,
   loadSongsActionCreator,
+  RemoveActiveSongActionCreator,
 } from "./actionsCreatorSongs";
+import { RemoveActiveSongAction } from "./types/actionsSongs";
 import { ActionTypesSong } from "./types/actionsTypesSong";
 
 describe("Given the loadSongsActionCreator function", () => {
@@ -59,6 +61,20 @@ describe("Given the deleteSongActionCreator function", () => {
 
       expect(deleteSongAction).toHaveProperty("type", expectedTypeAction);
       expect(deleteSongAction).toHaveProperty("payload", expectedIdSong);
+    });
+  });
+});
+
+describe("Given the removeActiveSongActionCreator function", () => {
+  describe("When it's called", () => {
+    test("Then should return an action with type 'removeActiveSongAction'", () => {
+      const expectedAction: RemoveActiveSongAction = {
+        type: "removeActiveSong",
+      };
+
+      const action = RemoveActiveSongActionCreator();
+
+      expect(action).toStrictEqual(expectedAction);
     });
   });
 });

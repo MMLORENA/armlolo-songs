@@ -3,4 +3,5 @@ export type ActionTypesSong =
   | "addSong"
   | "unknown"
   | "addActiveSong"
-  | "deleteSong";
+  | "deleteSong"
+  | "removeActiveSong";
