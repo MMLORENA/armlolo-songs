@@ -32,10 +32,15 @@ const SongPlayerStyled = styled.article`
     &__album {
       font-size: 1rem;
     }
-    @media (max-width: 320px) {
+    @media (max-width: 500px) {
       &__artist,
       &__album {
         display: none;
+      }
+      &__container {
+        & :not(:last-child)::after {
+          content: "";
+        }
       }
     }
     &__audio {
