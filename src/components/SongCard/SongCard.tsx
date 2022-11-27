@@ -32,6 +32,8 @@ const SongCard = ({
     deleteSong(id);
   };
 
+  const songTime = secondsToSongTime(+time!);
+
   return (
     <SongCardStyled>
       <span className="song__position">{songPosition}</span>
@@ -46,7 +48,7 @@ const SongCard = ({
         <Heading children={title} className="song__title" level={3} />
         <span className="song__artist">{artist}</span>
         <span className="song__album">{album}</span>
-        <span className="song__duration">{time}</span>
+        <span className="song__duration">{songTime}</span>
       </section>
       <Button text="𝐱" type="button" action={callDeleteSong} />
     </SongCardStyled>
