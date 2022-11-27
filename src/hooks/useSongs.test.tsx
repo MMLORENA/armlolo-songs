@@ -10,13 +10,31 @@ import WrapperRenderHook from "../testUtils/wrappers/WrapperRenderHook";
 import useSong from "./useSong";
 import mockToastify from "../testUtils/mocks/mockToastify/mockToastify";
 
+interface metadataSong {
+  common: {
+    title: string;
+    album: string;
+    artist: string;
+    picture: Array<{ data: string }> | string;
+  };
+  format: {
+    duration: string;
+  };
+}
+
+let mockMetaDataSong: metadataSong = {
+  common: { title: "", album: "", artist: "", picture: [{ data: "" }] },
+  format: { duration: "" },
+};
+
 jest.mock("music-metadata-browser", () => ({
   ...jest.requireActual("music-metadata-browser"),
-  parseBlob: () => ({
-    common: { title: "", album: "", artist: "", picture: [{ data: "" }] },
-    format: { duration: "" },
-  }),
+  parseBlob: () => mockMetaDataSong,
 }));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe("Given the useSong custom hook function", () => {
   describe("When addSong it's called with a music file", () => {
@@ -62,6 +80,51 @@ describe("Given the useSong custom hook function", () => {
       expect(mockToastify.success).toHaveBeenCalledWith(
         expectedToastifyMessage
       );
+    });
+  });
+
+  describe("When addSong it's called with a music file with out image", () => {
+    test("Then dispatch has to been called with the music info and the pre defined david image", async () => {
+      mockMetaDataSong = {
+        ...mockMetaDataSong,
+        common: { ...mockMetaDataSong.common, picture: "" },
+      };
+
+      jest.useFakeTimers();
+
+      const fileReaderSpy = jest.spyOn(global, "FileReader").mockImplementation(
+        (): FileReader => ({
+          ...FileReader.prototype,
+          readAsDataURL: jest.fn(),
+          result: "",
+        })
+      );
+
+      const expectedPayload = {
+        type: "addSong",
+        payload: {
+          artist: "",
+          audio: "",
+          id: `${Date.now()}`,
+          picture: "david.jpeg",
+          time: "",
+          title: "",
+          album: "",
+        },
+      };
+
+      const { result } = WrapperRenderHook({
+        customHook: useSong,
+        renderOptions: { dispatch: mockDispatch },
+      });
+
+      await result.current.addSong(new File([], ""));
+
+      URL.createObjectURL = jest.fn().mockReturnValue("");
+      const reader = fileReaderSpy.mock.results[0].value;
+      reader.onloadend!({} as ProgressEvent<FileReader>);
+
+      expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
     });
   });
 
