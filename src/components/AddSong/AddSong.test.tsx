@@ -40,6 +40,18 @@ describe("Given the Add Song component", () => {
       expect(songNameDocument).toBeInTheDocument();
     });
 
+    describe("And the user click on 'Send Song' button without a song loaded", () => {
+      test("Then add song shouldn't be called", async () => {
+        WrapperRender(componentWithOptions);
+
+        const submitButton = screen.getByRole("button", { name: "Send Song" });
+
+        userEvent.click(submitButton);
+
+        expect(mockAddSong).not.toHaveBeenCalled();
+      });
+    });
+
     describe("And the user send the song after select it", () => {
       test("Then it should call the add song function with the uploaded song", () => {
         WrapperRender(componentWithOptions);
