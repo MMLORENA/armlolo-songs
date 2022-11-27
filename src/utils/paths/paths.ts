@@ -1,9 +1,9 @@
-interface pathsStructure {
+interface PathsStructure {
   base: string;
   home: string;
 }
 
-const paths: pathsStructure = {
+const paths: PathsStructure = {
   base: "/",
   home: "/home",
 };
