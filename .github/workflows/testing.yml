@@ -17,6 +17,9 @@ jobs:
       - name: Testing
         run: npm test
 
+      - name: Cypress
+        run: npm run cypress:open
+
         env:
           REACT_APP_API_URL: ${{ env.REACT_APP_API_URL }}
           REACT_APP_LOCAL_API_URL: ${{ env.REACT_APP_LOCAL_API_URL }}
