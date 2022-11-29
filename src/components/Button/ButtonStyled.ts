@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { ButtonProps } from "./Button";
 
-interface ButtonStyledProps {
+interface ButtonStyledProps extends ButtonProps {
   semantic: "button" | "icon";
 }
 
@@ -47,7 +48,7 @@ const iconStyle = css`
 
 const ButtonStyled = styled.button<ButtonStyledProps>`
   ${(props) => props.semantic === "button" && buttonStyle};
-  ${(props) => props.semantic === "icon" && iconStyle}
+  ${(props) => props.semantic === "icon" && iconStyle};
 `;
 
 export default ButtonStyled;
