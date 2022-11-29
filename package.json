@@ -35,7 +35,8 @@
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "cypress:run": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -80,6 +81,7 @@
     "@types/uuid": "^8.3.4",
     "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^11.2.0",
+    "dotenv": "^16.0.3",
     "eslint-plugin-cypress": "^2.12.1",
     "husky": "^8.0.0",
     "prop-types": "^15.8.1",
