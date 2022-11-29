@@ -1,24 +1,15 @@
 import ButtonStyled from "./ButtonStyled";
 
-interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
-  type: "button" | "submit";
-  isDisable: boolean;
-  action?: () => void;
 }
 
-const Button = ({
-  text,
-  type,
-  isDisable,
-  action,
-}: ButtonProps): JSX.Element => {
+const Button = ({ text, ...props }: ButtonProps): JSX.Element => {
   return (
     <ButtonStyled
       className="button"
-      onClick={action}
-      type={type}
-      disabled={isDisable}
+      {...props}
       semantic={text ? "button" : "icon"}
     >
       {text}

@@ -9,14 +9,7 @@ describe("Given the Button component", () => {
   describe("When it receives text 'Delete'", () => {
     test("Then should show 'Delete' inside the button", () => {
       WrapperRender({
-        children: (
-          <Button
-            text={textButton}
-            action={() => {}}
-            type="button"
-            isDisable={false}
-          />
-        ),
+        children: <Button text={textButton} onClick={() => {}} type="button" />,
         renderOptions: {},
       });
 
@@ -29,7 +22,7 @@ describe("Given the Button component", () => {
   describe("When it doesn't receives any text", () => {
     test("Then should show a button with icon style", () => {
       WrapperRender({
-        children: <Button action={() => {}} type="button" isDisable={false} />,
+        children: <Button type="button" />,
         renderOptions: {},
       });
 
@@ -47,9 +40,9 @@ describe("Given the Button component", () => {
         children: (
           <Button
             text="Test"
-            action={mockAction}
+            onClick={mockAction}
             type="button"
-            isDisable={false}
+            disabled={false}
           />
         ),
         renderOptions: {},

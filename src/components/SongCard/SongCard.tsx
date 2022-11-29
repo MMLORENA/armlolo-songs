@@ -50,7 +50,7 @@ const SongCard = ({
         <span className="song__album">{album}</span>
         <span className="song__duration">{songTime}</span>
       </section>
-      <Button isDisable={false} type="button" action={callDeleteSong} />
+      <Button disabled={false} type="button" onClick={callDeleteSong} />
     </SongCardStyled>
   );
 };
